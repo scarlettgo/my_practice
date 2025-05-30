@@ -26,23 +26,25 @@ export default function Home() {
 
       <div className="flex">
         <aside className="rounded-md p-4">
-          <h2 className="text-black font-bold text-center text-3xl bg-gray-200 py-80 px-15 rounded-md">
+          <h2 className="text-black bg-gray-200 py-100 px-10 rounded-md">
             Left
           </h2>
         </aside>
 
-        <main className="flex-1 p-4  rounded-md">
-          <div>select</div>
+        <main className="flex-auto p-4 rounded-md bg-gray-200">
+    
 
-          <div className="">
+          <div className="flex-auto p-4 rounded-md grid grid-cols-1  md:grid-cols-3 lg:grid-cols-4 gap-4">
             {products.map((product) => (
               <ProductCard key={product.code} product={product} />
             ))}
           </div>
+
+          
         </main>
 
         <aside className="rounded-md p-4">
-          <h2 className="text-black font-bold text-center text-3xl bg-gray-200 py-80 px-15 rounded-md">
+          <h2 className="text-black bg-gray-200 py-100 px-10 rounded-md">
             Right
           </h2>
         </aside>
