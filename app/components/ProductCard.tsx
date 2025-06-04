@@ -7,13 +7,11 @@ interface ProductCardProps {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-  const [Preview, setPreview] = useState(false);
+  const [preview, setPreview] = useState(false);
 
   const handlePreview = () => {
-    setPreview(!Preview);
+    setPreview((prev) => !prev);
   };
-
-  const showDetail = () => {};
 
   return (
     <div className="border p-4 rounded">
@@ -31,12 +29,12 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
       <button
         onClick={handlePreview}
-        className="bg-blue-200 rounded-md p-2 cursor-pointer"
+        className="bg-blue-200 rounded-md font-bold p-2 cursor-pointer"
       >
-        {Preview ? "Hide" : "Preview"}
+        {preview ? "Hide" : "Preview"}
       </button>
 
-      {Preview && ( //when Preview is true, show the price
+      {preview && ( //when Preview is true, show the price
         <div>
           <p className="bg-gray-100 text-center text-blue-500">
             {product.price?.formattedValue}
@@ -44,22 +42,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         </div>
       )}
 
-
-      <Link href="">
-      
-      Detail
-      
+      <Link
+        href={`/product/${product.code}`}
+        className="rounded bg-gray-100 p-3 font-bold"
+      >
+        Detail
       </Link>
-
-
-
-
-
-
     </div>
-
-
-
   );
 };
 
