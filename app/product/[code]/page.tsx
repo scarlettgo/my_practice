@@ -1,9 +1,9 @@
 "use client";
 
-import React from "react";
+import React, { useCallback, useState } from "react";
 import { getProducts } from "../../utils/dataFetcher";
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
 
 export default function DetailPage() {
@@ -14,43 +14,41 @@ export default function DetailPage() {
 
   const params = useParams();
   const code = params.code;
+  const router = useRouter();
   const [product] = products.filter((p) => p.code === code);
 
-  // products.filter(function (p) {
-  //   return p.code === code;
-  // });
-
-  const handleBack = () => {
-    window.history.go(-1);
-  };
+  const handleBack = useCallback(() => {
+    router.back();
+  }, []);
 
   return (
-    <div>
+    <div className="p-8">
       <button
         onClick={handleBack}
-        className="rounded bg-gray-100 p-3 font-bold"
+        className="rounded bg-gray-100 p-3 font-bold "
       >
         back
       </button>
 
-      <div>
-        <h1 className="text-3xl text-bold text-center">{product.name}</h1>
+      <div className="border-gray-10 shadow-sm p-8">
+        <h1 className="text-2xl text-bold text-center">{product.name}</h1>
+        <p className="text-2xl text-blue-500 p-5">
+          {product.price?.formattedValue}
+        </p>
+        <p className="text-green-400 text-2xl p-5">
+          {product.stock?.stockLevelStatus?.code}
+        </p>
+        <p>{product.description}</p>
         <div>
           <Image
             src={product?.images?.[0]?.url || "file.svg"}
-            alt={product.name || "Product image"}
+            alt={product.name}
             width={300}
             height={200}
             className="object-cover rounded-md"
           />
         </div>
-        <p className="bg-gray-100 text-center text-blue-500">
-          {product.price?.formattedValue}
-        </p>
-        <h1>{product.description}</h1>
       </div>
-
-      
     </div>
   );
 }
