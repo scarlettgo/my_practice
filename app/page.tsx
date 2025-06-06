@@ -14,7 +14,7 @@ export default function Home() {
   });
 
   return (
-    <div className="container mx-auto">
+    <div className="container auto">
       <header className="p-4">
         <h1 className="text-black font-bold text-center text-3xl bg-gray-100 py-8 px-6 rounded-md">
           Header
@@ -28,15 +28,16 @@ export default function Home() {
           </h2>
         </aside>
 
-        <main className=" rounded-md p-4 grid grid-cols-1  md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {/* {products.map((product) => (
-            <SelectedList key={product.code} product={product}/>
-          ))} */}
-          <SelectedList />
+        <main className="rounded-md p-4 ">
+          <div className="relative shadow rounded-md items-center h-60 w-full border border-gray-200 bg-gray-100">
+            <SelectedList />
+          </div>
 
-          {products.map((product) => (
-            <ProductCard key={product.code} product={product} />
-          ))}
+          <div className="mt-6 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {products.map((product) => (
+              <ProductCard key={product.code} product={product} />
+            ))}
+          </div>
         </main>
 
         <aside className="flex rounded-md p-4">

@@ -12,6 +12,10 @@ export default function DetailPage() {
     queryFn: getProducts,
   });
 
+  //Route -> /product/[code]
+  //URL -> /product/12345
+  //params -> { code: "12345" }
+  //code -> "12345"
   const params = useParams();
   const code = params.code;
   const router = useRouter();
